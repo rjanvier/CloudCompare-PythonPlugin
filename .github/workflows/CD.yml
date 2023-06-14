@@ -65,8 +65,8 @@ jobs:
             -DPLUGIN_PYTHON=ON `
             -DPLUGIN_PYTHON_USE_EMBEDDED_MODULES=ON `
             -DPLUGIN_STANDARD_QM3C2=ON `
+            -DPYTHON_EXECUTABLE="C:\\hostedtoolcache\\windows\\Python\\3.10.11\\x64\\python.exe" `
             .
-        #-DPYTHON_EXECUTABLE="C:\\hostedtoolcache\\windows\\Python\\3.7.9\\x64\\python.exe" `
 
       - name: Build
         # not sure we have to force Release flag like I did
