@@ -70,6 +70,12 @@ Write-Host ""
 
 $OutputInstallerName = "CloudCompare-PythonPlugin-Setup-$LocalizationName-Python$Python3DllSuffix-$EnvTypeName.msi"
 
+Write-Host "$CloudCompareInstallFolder\plugins\Python"
+Write-Host "$CloudCompareInstallFolder\resources"
+Write-Host $LocalizationFile
+Write-Host $OutputInstallerName
+Write-Host "$(Get-Location)"
+
 # Link the compiled files together
 &light `
     -ext WixUIExtension `

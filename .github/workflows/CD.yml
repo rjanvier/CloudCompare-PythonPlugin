@@ -37,14 +37,8 @@ jobs:
           cache: true
           setup-python: false
 
-      - name: Set path for candle and light
-        shell: bash
-        run: echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
-
       - name: Install Python dependencies
         run: |
-          echo $GITHUB_PATH
-          candle.exe
           python -c "import sys;print(sys.executable)"
           python -m pip install --upgrade pip
           pip install pybind11 numpy
@@ -81,8 +75,11 @@ jobs:
       - name: Install
         run: cmake --install build
 
+      - name: Set path for candle and light
+        shell: bash
+        run: echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
+
       - name: Wix packaging
         shell: pwsh
         run: |
-          echo "${env:wix}bin" >> $GITHUB_PATH
           cmake --build build --target python_plugin_installer
