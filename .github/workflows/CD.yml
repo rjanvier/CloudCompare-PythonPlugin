@@ -34,6 +34,7 @@ jobs:
 
       - name: Install Python dependencies
         run: |
+          python -c "import sys;print(sys.executable)
           python -m pip install --upgrade pip
           pip install pybind11 numpy
 
