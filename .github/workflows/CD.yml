@@ -39,6 +39,7 @@ jobs:
 
       - name: Install Python dependencies
         run: |
+          echo "${env:wix}bin"
           python -c "import sys;print(sys.executable)"
           python -m pip install --upgrade pip
           pip install pybind11 numpy
@@ -76,6 +77,7 @@ jobs:
         run: cmake --install build
 
       - name: Wix packaging
-        run: cmake --build build --target python_plugin_installer
-
-      # to be continued with wix etc...
+        shell: pwsh
+        run: |
+          echo "::add-path::${env:wix}bin"
+          cmake --build build --target python_plugin_installer
