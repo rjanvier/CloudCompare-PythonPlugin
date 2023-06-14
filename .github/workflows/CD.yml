@@ -1,0 +1,71 @@
+name: Continuous Delivery
+
+on: [ push ] #which strategy? tag? commit message? manual?
+
+
+jobs:
+  Windows-Installer:
+    name: Windows Installer
+    runs-on: windows-2019
+
+    steps:
+      - name: Clone CloudCompare
+        uses: actions/checkout@v3
+        with:
+          repository: 'CloudCompare/CloudCompare'
+          ref: ff67e236d6c29db172422d1f5a77cae0f968c2bf
+          submodules: recursive
+
+      - name: Clone PythonPlugin
+        uses: actions/checkout@v3
+        with:
+          path: 'plugins/private/CloudCompare-PythonPlugin'
+
+      - name: Install QT 5.15.2
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: 5.15.2
+          host: windows
+          target: desktop
+          arch: win64_msvc2019_64
+          dir:  ${{ github.workspace }}/qt_install
+          cache: true
+          setup-python: false
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pybind11 numpy
+
+      - name: Configure MSVC console
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Set environment for MSVC
+        run: |
+          # Set these env vars so cmake picks the correct compiler
+          # https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-commands-for-github-actions#environment-files
+          echo "CXX=cl.exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          echo "CC=cl.exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Configure CMake
+        shell: pwsh
+        run: |
+          mkdir build
+          cmake  `
+            -G Ninja `
+            -B build `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DCMAKE_INSTALL_PREFIX=install `
+            -DPLUGIN_PYTHON=ON `
+            -DPLUGIN_PYTHON_USE_EMBEDDED_MODULES=ON `
+            -DPLUGIN_STANDARD_QM3C2=ON `
+            .
+
+      - name: Build
+        # not sure we have to force Release flag like I did
+        run: cmake --build build --config Release --parallel
+
+      - name: Install
+        run: cmake --install build
+
+      # to be continued with wix etc...
