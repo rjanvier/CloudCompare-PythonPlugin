@@ -37,11 +37,14 @@ jobs:
           cache: true
           setup-python: false
 
-      - name: Install Python dependencies
+      - name: Add to path
         run: |
           echo "${env:wix}bin"
-          echo $GITHUB_PATH
           echo "${env:wix}bin" >> $GITHUB_PATH
+
+      - name: Install Python dependencies
+        run: |
+          echo $GITHUB_PATH
           & heat
           python -c "import sys;print(sys.executable)"
           python -m pip install --upgrade pip
