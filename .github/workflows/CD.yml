@@ -40,8 +40,9 @@ jobs:
       - name: Install Python dependencies
         run: |
           echo "${env:wix}bin"
+          echo $GITHUB_PATH
           echo "${env:wix}bin" >> $GITHUB_PATH
-          heat
+          & heat
           python -c "import sys;print(sys.executable)"
           python -m pip install --upgrade pip
           pip install pybind11 numpy
