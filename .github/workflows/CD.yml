@@ -76,6 +76,6 @@ jobs:
         run: cmake --install build
 
       - name: Wix packaging
-        run: cmake  --build build --target python_plugin_installer build
+        run: cmake --build build --target python_plugin_installer
 
       # to be continued with wix etc...
