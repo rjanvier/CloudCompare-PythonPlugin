@@ -68,7 +68,7 @@ Write-Host ""
     .\Installer.wxs `
     .\PythonEnvironment.wxs `
 
-$OutputInstallerName = "CloudCompare-PythonPlugin-Setup-$LocalizationName-Python$Python3DllSuffix-$EnvTypeName.msi"
+$OutputInstallerName = "CloudCompare-PythonPlugin-Setup.msi"
 
 Write-Host "$CloudCompareInstallFolder\plugins\Python"
 Write-Host "$CloudCompareInstallFolder\resources"
