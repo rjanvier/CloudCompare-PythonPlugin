@@ -59,6 +59,7 @@ jobs:
             -DCMAKE_INSTALL_PREFIX=install `
             -DPLUGIN_PYTHON=ON `
             -DPLUGIN_PYTHON_USE_EMBEDDED_MODULES=ON `
+            -DPYTHON_EXECUTABLE="C:\\hostedtoolcache\\windows\\Python\\3.7.9\\x64\\python.exe" `
             -DPLUGIN_STANDARD_QM3C2=ON `
             .
 
