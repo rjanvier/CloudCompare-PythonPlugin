@@ -76,9 +76,15 @@ jobs:
 
       - name: Set path for candle and light
         shell: bash
-        run: echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
+        run: echo "C:\\Program Files (x86)\\WiX Toolset v3.11\\bin" >> $GITHUB_PATH
 
       - name: Wix packaging
         shell: pwsh
         run: |
           cmake --build build --target python_plugin_installer
+
+      - name: Upload CC-PythonPlugin installer
+        uses: actions/upload-artifact@v3
+        with:
+          name: python_plugin_installer
+          path: plugins/private/CloudCompare-PythonPlugin/installer/CloudCompare-PythonPlugin-Setup.msi
