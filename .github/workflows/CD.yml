@@ -87,4 +87,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: python_plugin_installer
-          path: plugins/private/CloudCompare-PythonPlugin/installer/CloudCompare-PythonPlugin-Setup.msi
+          path: plugins/private/CloudCompare-PythonPlugin/installer/*.wixobj
