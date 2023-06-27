@@ -15,13 +15,13 @@
 // #                                                                        #
 // ##########################################################################
 
-#include "../casters.h"
-
 #include <FileIO.h>
 #include <FileIOFilter.h>
 
 #include <QFileInfo>
 #include <QWidget>
+
+#include "../casters.h"
 
 namespace py = pybind11;
 using namespace pybind11::literals;
@@ -65,6 +65,8 @@ static void ThrowForFileError(CC_FILE_ERROR error)
         throw std::runtime_error("Third party lib exception");
     case CC_FERR_NOT_IMPLEMENTED:
         throw std::runtime_error("Not implemented");
+    case CC_FERR_INTERNAL:
+        throw std::runtime_error("Internal error");
     }
 }
 

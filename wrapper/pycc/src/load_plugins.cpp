@@ -1,3 +1,6 @@
+#include <pybind11/numpy.h>
+#include <pybind11/stl_bind.h>
+
 #include <QCoreApplication>
 #include <QDir>
 #include <QDirIterator>
@@ -5,9 +8,6 @@
 #include <QtGlobal>
 
 #include "casters.h"
-
-#include <pybind11/numpy.h>
-#include <pybind11/stl_bind.h>
 
 namespace py = pybind11;
 
