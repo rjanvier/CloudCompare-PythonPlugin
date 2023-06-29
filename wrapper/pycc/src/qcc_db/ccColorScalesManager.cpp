@@ -63,7 +63,6 @@ void define_ccColorScalesManager(py::module &m)
         .def("getScale", &ccColorScalesManager::getScale, "UUID"_a)
         .def("addScale", &ccColorScalesManager::addScale, "scale"_a)
         .def("removeScale", &ccColorScalesManager::removeScale, "UUID"_a)
-        .def("removeScale", &ccColorScalesManager::removeScale, "UUID"_a)
         // TODO map()
         .def("fromPersistentSettings", &ccColorScalesManager::fromPersistentSettings)
         .def("toPersistentSettings", &ccColorScalesManager::toPersistentSettings);
